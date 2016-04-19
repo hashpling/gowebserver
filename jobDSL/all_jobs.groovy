@@ -35,6 +35,7 @@ version\\.txt'''
       keepSystemVariables(true)
       keepBuildVariables(true)
       env('GITHUB_USERNAME', "${GITHUB_USERNAME}")
+      env('CONTAINER_WORKSPACE', "${CONTAINER_WORKSPACE}")
     }
   }
   triggers {
@@ -63,6 +64,7 @@ sudo docker rm ${cid}''')
         condition('SUCCESS')
         parameters{
           predefinedProp('GITHUB_USERNAME', '${GITHUB_USERNAME}')
+          predefinedProp('CONTAINER_WORKSPACE', "${CONTAINER_WORKSPACE}")
           gitRevision(false)
           propertiesFile('props.env', failTriggerOnMissing = true)
         }
@@ -83,7 +85,6 @@ echo "testing_cid=$testing_cid" > props.env
 ''')
     environmentVariables {
       propertiesFile('props.env')
-      env('CONTAINER_WORKSPACE', "${CONTAINER_WORKSPACE}")
     }
     shell('''#!/bin/bash -x
 cip=$(sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${testing_cid})
