@@ -83,6 +83,7 @@ echo "testing_cid=$testing_cid" > props.env
 ''')
     environmentVariables {
       propertiesFile('props.env')
+      env('CONTAINER_WORKSPACE', "${CONTAINER_WORKSPACE}")
     }
     shell('''#!/bin/bash -x
 cip=$(sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${testing_cid})
