@@ -1,6 +1,8 @@
 // Your github username
 // It should come as a parameter to this seed job
 //GITHUB_USERNAME="githubusername"
+//CONTAINER_WORKSPACE="/opt/containers"
+//GITHUB_USERNAME="githubusername"
 
 // Variable re-used in the jobs
 PROJ_NAME="webserver"
@@ -139,7 +141,7 @@ ls -al
 pwd -P
 rm -f output.csv
 echo "Running /source/parse.groovy"
-sudo docker run -t --rm -v /opt/containers/jenkins_home/workspace/${JOB_NAME}/:/source webratio/groovy parse.groovy
+sudo docker run -t --rm -v ${CONTAINER_WORKSPACE}/jenkins_home/workspace/${JOB_NAME}/:/source webratio/groovy parse.groovy
 cat output.csv
 ''')
   }
