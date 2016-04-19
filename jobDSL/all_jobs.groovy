@@ -143,7 +143,7 @@ ls -al
 pwd -P
 rm -f output.csv
 echo "Running /source/parse.groovy"
-sudo docker run -t --rm -v ${CONTAINER_WORKSPACE}/jenkins_home/workspace/${JOB_NAME}/:/source webratio/groovy parse.groovy
+sudo docker run -t --rm -v ${CONTAINER_WORKSPACE}/jenkins_home/jobs/${JOB_NAME}/workspace:/source webratio/groovy parse.groovy
 cat output.csv
 ''')
   }
